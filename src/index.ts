@@ -1,4 +1,4 @@
-import { wsServer } from "./ws_server/index";
+import { wsServer } from "./ws_server/server";
 import { httpServer } from "./http_server/index";
 
 const HTTP_PORT = 8181;

@@ -1,6 +1,6 @@
 import { mouse, up, down, left, right } from "@nut-tree/nut-js";
 import { RawData } from "ws";
-import { drawRectangle } from "./draw";
+import { drawCircle, drawRectangle } from "./draw";
 
 
 export async function controller(msg: RawData): Promise<string> {
@@ -30,6 +30,7 @@ export async function controller(msg: RawData): Promise<string> {
             break;
 
         case 'draw_circle':
+            await drawCircle(Number(args[0]));
             break;
 
         case 'draw_square':

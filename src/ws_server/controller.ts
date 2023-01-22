@@ -4,6 +4,7 @@ import { RawData } from "ws";
 
 export async function controller(msg: RawData): Promise<string> {
     const [cmd, ...args] = msg.toString().split(' ');
+    let response = cmd;
 
     switch (cmd) {
         case 'mouse_up':
@@ -23,6 +24,8 @@ export async function controller(msg: RawData): Promise<string> {
             break;
 
         case 'mouse_position':
+            let {x, y} = await mouse.getPosition();
+            response = `${cmd} ${x},${y}`;
             break;
 
         case 'draw_circle':
@@ -38,5 +41,5 @@ export async function controller(msg: RawData): Promise<string> {
             break;
     };
     
-    return cmd;
+    return response;
 }

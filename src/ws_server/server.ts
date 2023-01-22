@@ -11,8 +11,8 @@ wsServer.on('connection', (ws, req) => {
     const wsStream = createWebSocketStream(ws, { decodeStrings: false });
 
     wsStream.on('data', async (chunk) => {
-        let cmd = await controller(chunk.toString())
-
+        let response = await controller(chunk.toString())
+        wsStream.write(response);
         console.log(chunk.toString());
 
     });

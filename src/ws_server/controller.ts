@@ -1,6 +1,7 @@
 import { mouse, up, down, left, right } from "@nut-tree/nut-js";
 import { RawData } from "ws";
 import { drawCircle, drawRectangle } from "./draw";
+import { printScreen } from "./screenshot";
 
 
 export async function controller(msg: RawData): Promise<string> {
@@ -42,7 +43,8 @@ export async function controller(msg: RawData): Promise<string> {
             break;
 
         case 'prnt_scrn':
-            break;
+            let screenshot = await printScreen();
+      return `prnt_scrn ${screenshot}`;
     };
     
     return response;
